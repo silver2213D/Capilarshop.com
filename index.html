@@ -14,8 +14,8 @@
             <div class="logo" onclick="showPage('home')">
                 <img src="images/Logo empresa.jpeg" alt="Logo Empresa" class="logo-image">
                 <div class="logo-texts">
-                    <span class="logo-text">Logo Empresa</span>
-                    <span class="logo-tagline">Belleza y estilo desde el primer día</span>
+                    <span class="logo-text">Escencia capilar</span>
+                    <span class="logo-tagline">Tienda de productos para el cuidado del cabello</span>
                 </div>
             </div>
             <ul class="nav-menu">
@@ -40,30 +40,12 @@
             </div>
         </section>
         
-        <section class="benefits">
-            <div class="benefit-card piel-sensible">
-                <div class="benefit-icon"></div>
-                <h3>Piel sensible</h3>
-                <p>Productos especializados en piel senisble</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🔬</div>
-                <h3>Piel Seca</h3>
-                <p>Productos recomendados para pieles con problemas de resequedad</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🌿</div>
-                <h3>cremas hidratantes</h3>
-                <p>para todo tipo de piel</p>
-            </div>
-        </section>
-        
-        <section class="featured">
+        <section class="home-products">
             <div class="featured-header">
-                <h2>BESTSELLERS</h2>
-                <p>Nuestros productos favoritos</p>
+                <h2>PRODUCTOS</h2>
+                <p>Todos nuestros productos</p>
             </div>
-            <div class="products-grid" id="featured-products"></div>
+            <div class="products-grid" id="home-products"></div>
         </section>
     </div>
 
@@ -199,6 +181,22 @@
             <h1>PANEL DE ADMINISTRACIÓN</h1>
             <div class="admin-content">
                 <div class="admin-section">
+                    <h2>Secciones de Productos</h2>
+                    <div class="admin-sections-list" id="admin-sections-list"></div>
+                    <form class="admin-form" id="add-section-form" style="margin-top:1rem;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="section-name">Nombre de la sección:</label>
+                                <input type="text" id="section-name" required>
+                            </div>
+                            <div class="form-group" style="align-self:flex-end;">
+                                <button type="submit" class="btn-primary">Agregar Sección</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="admin-section">
                     <h2>Productos Actuales</h2>
                     <div class="admin-products-list" id="admin-products-list"></div>
                 </div>
@@ -218,6 +216,12 @@
                                     <option value="rostro">Cuidado Rostro</option>
                                     <option value="cuerpo">Cuidado Cuerpo</option>
                                     <option value="especializado">Tratamientos Especializados</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-section">Sección:</label>
+                                <select id="product-section" required>
+                                    <option value="">Seleccionar sección</option>
                                 </select>
                             </div>
                         </div>

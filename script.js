@@ -1,17 +1,22 @@
 // BASE DE DATOS DE PRODUCTOS LOGO EMPRESA
 const productos = [
-    { id: 1, nombre: 'Shampoo Reparador con Keratina', categoria: 'shampoo', precio: 25.00, imagen: 'images/piel-sensible.jpg', descripcion: 'Shampoo nutritivo que refuerza la fibra capilar y mejora la elasticidad en cada lavado.', rating: 4.8, stock: 18 },
-    { id: 2, nombre: 'Acondicionador Hidratante', categoria: 'acondicionador', precio: 22.50, imagen: 'images/piel-sensible.jpg', descripcion: 'Acondicionador ligero que desenreda y aporta brillo sin apelmazar.', rating: 4.7, stock: 20 },
-    { id: 3, nombre: 'Mascarilla Intensiva de Argán', categoria: 'tratamiento', precio: 29.90, imagen: 'images/piel-sensible.jpg', descripcion: 'Tratamiento profundo para recuperar el cabello seco y dañado en minutos.', rating: 4.9, descuento: 15, stock: 12 },
-    { id: 4, nombre: 'Serum Anti-frizz', categoria: 'estilo', precio: 19.99, imagen: 'images/piel-sensible.jpg', descripcion: 'Serum ligero que controla el frizz y aporta un acabado suave y sedoso.', rating: 4.6, stock: 10 },
-    { id: 5, nombre: 'Spray Protector Térmico', categoria: 'estilo', precio: 18.50, imagen: 'images/piel-sensible.jpg', descripcion: 'Protege el cabello del calor de planchas y secadores hasta 230°C.', rating: 4.5, stock: 22 },
-    { id: 6, nombre: 'Aceite de Argán Puro', categoria: 'tratamiento', precio: 24.00, imagen: 'images/piel-sensible.jpg', descripcion: 'Aceite nutritivo para puntas abiertas y brillo intenso.', rating: 4.8, stock: 14 },
-    { id: 7, nombre: 'Crema para Puntas Secas', categoria: 'tratamiento', precio: 16.99, imagen: 'images/piel-sensible.jpg', descripcion: 'Reducción de puntas abiertas con efecto reparador inmediato.', rating: 4.4, stock: 27 },
-    { id: 8, nombre: 'Gel Fijador Suave', categoria: 'estilo', precio: 14.99, imagen: 'images/piel-sensible.jpg', descripcion: 'Fijación flexible con acabado natural y sin residuos.', rating: 4.3, descuento: 10, stock: 16 },
-    { id: 9, nombre: 'Shampoo Detox de Carbón', categoria: 'shampoo', precio: 21.99, imagen: 'images/piel-sensible.jpg', descripcion: 'Limpia profundamente eliminando residuos y exceso de grasa.', rating: 4.7, stock: 19 },
-    { id: 10, nombre: 'Mascarilla Nocturna Revitalizante', categoria: 'tratamiento', precio: 27.50, imagen: 'images/piel-sensible.jpg', descripcion: 'Repara mientras duermes para un cabello más suave al despertar.', rating: 4.9, descuento: 12, stock: 11 },
-    { id: 11, nombre: 'Crema para Definición de Rizos', categoria: 'estilo', precio: 20.00, imagen: 'images/piel-sensible.jpg', descripcion: 'Define rizos sin frizz y con movimiento natural.', rating: 4.6, stock: 13 },
-    { id: 12, nombre: 'Mascarilla de Colágeno + Vitamina E', categoria: 'tratamiento', precio: 26.00, imagen: 'images/piel-sensible.jpg', descripcion: 'Repara y fortalece la fibra capilar dejándola elástica y brillante.', rating: 4.8, descuento: 15, stock: 9 }
+    { id: 1, nombre: 'Shampoo Reparador con Keratina', categoria: 'shampoo', seccion: 'general', precio: 25.00, imagen: 'images/piel-sensible.jpg', descripcion: 'Shampoo nutritivo que refuerza la fibra capilar y mejora la elasticidad en cada lavado.', rating: 4.8, stock: 18 },
+    { id: 2, nombre: 'Acondicionador Hidratante', categoria: 'acondicionador', seccion: 'general', precio: 22.50, imagen: 'images/piel-sensible.jpg', descripcion: 'Acondicionador ligero que desenreda y aporta brillo sin apelmazar.', rating: 4.7, stock: 20 },
+    { id: 3, nombre: 'Mascarilla Intensiva de Argán', categoria: 'tratamiento', seccion: 'general', precio: 29.90, imagen: 'images/piel-sensible.jpg', descripcion: 'Tratamiento profundo para recuperar el cabello seco y dañado en minutos.', rating: 4.9, descuento: 15, stock: 12 },
+    { id: 4, nombre: 'Serum Anti-frizz', categoria: 'estilo', seccion: 'general', precio: 19.99, imagen: 'images/piel-sensible.jpg', descripcion: 'Serum ligero que controla el frizz y aporta un acabado suave y sedoso.', rating: 4.6, stock: 10 },
+    { id: 5, nombre: 'Spray Protector Térmico', categoria: 'estilo', seccion: 'general', precio: 18.50, imagen: 'images/piel-sensible.jpg', descripcion: 'Protege el cabello del calor de planchas y secadores hasta 230°C.', rating: 4.5, stock: 22 },
+    { id: 6, nombre: 'Aceite de Argán Puro', categoria: 'tratamiento', seccion: 'general', precio: 24.00, imagen: 'images/piel-sensible.jpg', descripcion: 'Aceite nutritivo para puntas abiertas y brillo intenso.', rating: 4.8, stock: 14 },
+    { id: 7, nombre: 'Crema para Puntas Secas', categoria: 'tratamiento', seccion: 'general', precio: 16.99, imagen: 'images/piel-sensible.jpg', descripcion: 'Reducción de puntas abiertas con efecto reparador inmediato.', rating: 4.4, stock: 27 },
+    { id: 8, nombre: 'Gel Fijador Suave', categoria: 'estilo', seccion: 'general', precio: 14.99, imagen: 'images/piel-sensible.jpg', descripcion: 'Fijación flexible con acabado natural y sin residuos.', rating: 4.3, descuento: 10, stock: 16 },
+    { id: 9, nombre: 'Shampoo Detox de Carbón', categoria: 'shampoo', seccion: 'general', precio: 21.99, imagen: 'images/piel-sensible.jpg', descripcion: 'Limpia profundamente eliminando residuos y exceso de grasa.', rating: 4.7, stock: 19 },
+    { id: 10, nombre: 'Mascarilla Nocturna Revitalizante', categoria: 'tratamiento', seccion: 'general', precio: 27.50, imagen: 'images/piel-sensible.jpg', descripcion: 'Repara mientras duermes para un cabello más suave al despertar.', rating: 4.9, descuento: 12, stock: 11 },
+    { id: 11, nombre: 'Crema para Definición de Rizos', categoria: 'estilo', seccion: 'general', precio: 20.00, imagen: 'images/piel-sensible.jpg', descripcion: 'Define rizos sin frizz y con movimiento natural.', rating: 4.6, stock: 13 },
+    { id: 12, nombre: 'Mascarilla de Colágeno + Vitamina E', categoria: 'tratamiento', seccion: 'general', precio: 26.00, imagen: 'images/piel-sensible.jpg', descripcion: 'Repara y fortalece la fibra capilar dejándola elástica y brillante.', rating: 4.8, descuento: 15, stock: 9 }
+];
+
+// SECCIONES DE PRODUCTOS (ADMIN)
+let secciones = [
+    { id: 'general', nombre: 'General' }
 ];
 
 // CARRITO
@@ -20,11 +25,19 @@ let carrito = [];
 // INICIALIZAR LA PÁGINA
 document.addEventListener('DOMContentLoaded', function() {
     loadProductsFromLocalStorage();
-    loadFeaturedProducts();
+    loadSectionsFromLocalStorage();
+    loadSectionsInProductForm();
+
     loadProducts();
-    
+    loadHomeProducts();
+    loadAdminProducts();
+
     // Event listener para el formulario de agregar producto
-    document.getElementById('add-product-form').addEventListener('submit', addProduct);
+    const productForm = document.getElementById('add-product-form');
+    if (productForm) productForm.addEventListener('submit', addProduct);
+
+    const sectionForm = document.getElementById('add-section-form');
+    if (sectionForm) sectionForm.addEventListener('submit', addSection);
 });
 
 // MOSTRAR PÁGINA
@@ -37,14 +50,130 @@ function showPage(page) {
     window.scrollTo(0, 0);
 }
 
-// CARGAR PRODUCTOS DESTACADOS
-function loadFeaturedProducts() {
-    const Featured = productos.filter(p => p.descuento).slice(0, 4);
-    const container = document.getElementById('featured-products');
-    container.innerHTML = Featured.map(p => createProductCard(p)).join('');
-    container.querySelectorAll('.product-card').forEach((card, i) => {
-        card.onclick = () => showProductDetail(Featured[i].id);
+// CARGAR PRODUCTOS EN LA PÁGINA DE INICIO
+function loadHomeProducts() {
+    const container = document.getElementById('home-products');
+    if (!container) return;
+
+    // Agrupamos los productos por sección
+    const grouped = {};
+    productos.forEach(p => {
+        const key = p.seccion || 'general';
+        if (!grouped[key]) grouped[key] = [];
+        grouped[key].push(p);
     });
+
+    container.innerHTML = secciones.map(sec => {
+        const sectionProducts = grouped[sec.id] || [];
+        if (!sectionProducts.length) return '';
+        return `
+            <div class="home-section">
+                <h3 class="home-section-title">${sec.nombre}</h3>
+                <div class="products-grid">${sectionProducts.map(p => createProductCard(p)).join('')}</div>
+            </div>
+        `;
+    }).join('');
+
+    attachProductCardListeners();
+}
+
+// CARGAR PRODUCTOS DESDE STORAGE
+function loadProductsFromLocalStorage() {
+    const saved = localStorage.getItem('productos');
+    if (!saved) return;
+
+    try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+            productos.splice(0, productos.length, ...parsed);
+        }
+    } catch {
+        // ignore
+    }
+}
+
+function saveProductsToLocalStorage() {
+    localStorage.setItem('productos', JSON.stringify(productos));
+}
+
+function loadSectionsFromLocalStorage() {
+    const saved = localStorage.getItem('secciones');
+    if (!saved) return;
+
+    try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length) {
+            secciones = parsed;
+        }
+    } catch {
+        // ignore
+    }
+}
+
+function saveSectionsToLocalStorage() {
+    localStorage.setItem('secciones', JSON.stringify(secciones));
+}
+
+function loadSectionsInProductForm() {
+    const select = document.getElementById('product-section');
+    if (!select) return;
+
+    select.innerHTML = '<option value="">Seleccionar sección</option>' +
+        secciones.map(sec => `<option value="${sec.id}">${sec.nombre}</option>`).join('');
+}
+
+function loadAdminSections() {
+    const container = document.getElementById('admin-sections-list');
+    if (!container) return;
+
+    container.innerHTML = secciones.map(sec => `
+        <div class="admin-section-item">
+            <strong>${sec.nombre}</strong>
+            ${sec.id !== 'general' ? `<button class="btn-secondary" onclick="deleteSection('${sec.id}')">Eliminar</button>` : ''}
+        </div>
+    `).join('');
+}
+
+function addSection(e) {
+    e.preventDefault();
+    const input = document.getElementById('section-name');
+    if (!input) return;
+
+    const nombre = input.value.trim();
+    if (!nombre) {
+        showNotification('Ingresa un nombre de sección válido.');
+        return;
+    }
+
+    const id = nombre.toLowerCase().replace(/\s+/g, '-');
+    if (secciones.some(s => s.id === id)) {
+        showNotification('Ya existe una sección con ese nombre.');
+        return;
+    }
+
+    secciones.push({ id, nombre });
+    saveSectionsToLocalStorage();
+    loadSectionsInProductForm();
+    loadAdminSections();
+    input.value = '';
+    showNotification('Sección creada correctamente.');
+}
+
+function deleteSection(sectionId) {
+    if (sectionId === 'general') return;
+    secciones = secciones.filter(s => s.id !== sectionId);
+
+    // re-asignar productos de la sección eliminada a la sección general
+    productos.forEach(p => {
+        if (p.seccion === sectionId) p.seccion = 'general';
+    });
+
+    saveSectionsToLocalStorage();
+    saveProductsToLocalStorage();
+    loadSectionsInProductForm();
+    loadAdminSections();
+    loadHomeProducts();
+    showNotification('Sección eliminada. Los productos se movieron a "General".');
 }
 
 // CARGAR TODOS LOS PRODUCTOS
@@ -63,7 +192,7 @@ function createProductCard(producto) {
     const stockLabel = outOfStock ? '<span class="stock out">Agotado</span>' : `<span class="stock">${producto.stock} disponibles</span>`;
 
     return `
-        <div class="product-card ${outOfStock ? 'out-of-stock' : ''}">
+        <div class="product-card ${outOfStock ? 'out-of-stock' : ''}" onclick="showProductDetail(${producto.id})">
             <div class="product-image"><img src="${producto.imagen}" alt="${producto.nombre}" onerror="this.src='images/piel-sensible.jpg'"></div>
             <div class="product-info">
                 <div class="product-name">${producto.nombre}</div>
@@ -84,6 +213,105 @@ function attachProductCardListeners() {
             btn.onclick = (e) => e.stopPropagation();
         });
     });
+}
+
+// ADMIN: LISTAR PRODUCTOS EN EL PANEL
+function loadAdminProducts() {
+    const container = document.getElementById('admin-products-list');
+    if (!container) return;
+
+    container.innerHTML = productos.map(p => {
+        const section = secciones.find(s => s.id === (p.seccion || 'general'));
+        const sectionName = section ? section.nombre : 'General';
+        return `
+            <div class="admin-product-item">
+                <div>
+                    <strong>${p.nombre}</strong>
+                    <div style="font-size:0.9rem;color:#555">${sectionName} • ${p.categoria} • $${p.precio.toFixed(2)}</div>
+                </div>
+                <button class="btn-secondary" onclick="deleteProduct(${p.id})">Eliminar</button>
+            </div>
+        `;
+    }).join('');
+}
+
+function deleteProduct(productId) {
+    const index = productos.findIndex(p => p.id === productId);
+    if (index === -1) return;
+    productos.splice(index, 1);
+    saveProductsToLocalStorage();
+    loadProducts();
+    loadHomeProducts();
+    loadAdminProducts();
+    showNotification('Producto eliminado.');
+}
+
+// AGREGAR PRODUCTO NUEVO
+function addProduct(e) {
+    e.preventDefault();
+
+    const nameInput = document.getElementById('product-name');
+    const categorySelect = document.getElementById('product-category');
+    const sectionSelect = document.getElementById('product-section');
+    const priceInput = document.getElementById('product-price');
+    const stockInput = document.getElementById('product-stock');
+    const imageInput = document.getElementById('product-image');
+    const ratingInput = document.getElementById('product-rating');
+    const descriptionInput = document.getElementById('product-description');
+    const discountInput = document.getElementById('product-discount');
+
+    const nombre = nameInput.value.trim();
+    const categoria = categorySelect.value;
+    const seccion = sectionSelect ? sectionSelect.value : 'general';
+    const precio = parseFloat(priceInput.value) || 0;
+    const stock = parseInt(stockInput.value, 10) || 0;
+    const rating = parseFloat(ratingInput.value) || 0;
+    const descripcion = descriptionInput.value.trim();
+    const descuento = parseFloat(discountInput.value) || 0;
+
+    if (!nombre || !categoria) {
+        showNotification('Completa al menos nombre y categoría.');
+        return;
+    }
+
+    const newId = productos.length ? Math.max(...productos.map(p => p.id)) + 1 : 1;
+
+    const newProduct = {
+        id: newId,
+        nombre,
+        categoria,
+        seccion: seccion || 'general',
+        precio,
+        imagen: 'images/piel-sensible.jpg',
+        descripcion,
+        rating,
+        descuento: descuento > 0 ? descuento : undefined,
+        stock
+    };
+
+    if (imageInput && imageInput.files && imageInput.files[0]) {
+        const file = imageInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function () {
+            newProduct.imagen = reader.result;
+            productos.push(newProduct);
+            afterProductAdded();
+        };
+        reader.readAsDataURL(file);
+    } else {
+        productos.push(newProduct);
+        afterProductAdded();
+    }
+
+    function afterProductAdded() {
+        saveProductsToLocalStorage();
+        loadProducts();
+        loadHomeProducts();
+        loadAdminProducts();
+        showNotification('Producto agregado correctamente.');
+        e.target.reset();
+        loadSectionsInProductForm();
+    }
 }
 
 // BUSCAR PRODUCTOS

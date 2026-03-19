@@ -1734,3 +1734,18 @@ body {
         gap: 30px;
     }
 }
+
+/* ADMIN */
+.admin-section-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 0.5rem;
+}
+
+.admin-section-item button {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+}
