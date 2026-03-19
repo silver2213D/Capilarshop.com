@@ -1,5 +1,5 @@
-# Sendipiel-Proyecto
+# Escencia capilar
 
-## Imagen de fondo para "Piel sensible"
+## Imagen de fondo para "Escencia capilar"
 
-Para que la tarjeta de la pestaña **Piel sensible** muestre el fondo solicitado, coloca tu imagen dentro de la carpeta `images` y nómbrala `piel-sensible.jpg`. El archivo ya existe como marcador de posición; reemplázalo con la imagen real.
+Para que la tarjeta de la pestaña **Escencia capilar** muestre el fondo solicitado, coloca tu imagen dentro de la carpeta `images` y nómbrala `escencia-capilar.jpg`. El archivo ya existe como marcador de posición; reemplázalo con la imagen real.
