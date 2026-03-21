@@ -478,14 +478,14 @@ function decreaseQty() {
 function addToCart(productId) {
     const producto = productos.find(p => p.id === productId);
     if (producto.stock <= 0) {
-        showNotification('Producto agotado');
+        showNotification('❌ Producto agotado');
         return;
     }
     const existeEnCarrito = carrito.find(item => item.id === productId);
     
     if (existeEnCarrito) {
         if (existeEnCarrito.cantidad >= producto.stock) {
-            showNotification('No hay suficiente stock disponible');
+            showNotification(`❌ No hay más stock disponible. Máx: ${producto.stock}`);
             return;
         }
         existeEnCarrito.cantidad += 1;
@@ -494,7 +494,7 @@ function addToCart(productId) {
     }
     
     updateCartCount();
-    showNotification(`${producto.nombre} añadido al carrito`);
+    showNotification(`✅ ${producto.nombre} añadido al carrito (Stock: ${producto.stock - (existeEnCarrito ? 1 : 0)})`);
 }
 
 // AÑADIR AL CARRITO DESDE DETALLE
@@ -503,6 +503,13 @@ function addToCartFromDetail(productId) {
     const producto = productos.find(p => p.id === productId);
     const existeEnCarrito = carrito.find(item => item.id === productId);
     
+    // Validar stock disponible
+    const cantidadActual = existeEnCarrito ? existeEnCarrito.cantidad : 0;
+    if (cantidadActual + cantidad > producto.stock) {
+        showNotification(`❌ No hay suficiente stock. Disponible: ${producto.stock - cantidadActual}`);
+        return;
+    }
+    
     if (existeEnCarrito) {
         existeEnCarrito.cantidad += cantidad;
     } else {
@@ -510,7 +517,7 @@ function addToCartFromDetail(productId) {
     }
     
     updateCartCount();
-    showNotification(`${producto.nombre} añadido al carrito`);
+    showNotification(`✅ ${producto.nombre} añadido al carrito`);
 }
 
 // ACTUALIZAR CONTADOR DEL CARRITO
@@ -605,13 +612,53 @@ const observer = new MutationObserver(() => {
 observer.observe(document.getElementById('carrito'), { attributes: true });
 observer.observe(document.getElementById('admin'), { attributes: true });
 
-// PAGAR
-function checkout() {
-    const total = document.getElementById('total').textContent;
-    showNotification(`¡Compra realizada! Total: RD$${total}`);
-    carrito = [];
-    updateCartCount();
-    setTimeout(() => showPage('home'), 1500);
+// PAGAR - Actualizar stock en Supabase
+async function checkout() {
+    // Validar stock disponible
+    for (let item of carrito) {
+        const producto = productos.find(p => p.id === item.id);
+        if (!producto || producto.stock < item.cantidad) {
+            showNotification(`❌ Stock insuficiente: ${item.nombre}`);
+            return;
+        }
+    }
+
+    // Procesar compra: actualizar stock en Supabase
+    try {
+        for (let item of carrito) {
+            const producto = productos.find(p => p.id === item.id);
+            const nuevoStock = producto.stock - item.cantidad;
+            
+            // Actualizar en Supabase
+            const { error } = await supabaseClient
+                .from('productos')
+                .update({ stock: nuevoStock })
+                .eq('id', item.id);
+            
+            if (error) {
+                console.error('Error actualizando stock:', error);
+                showNotification('❌ Error al procesar la compra');
+                return;
+            }
+        }
+
+        // Si todo va bien, mostrar confirmación
+        const total = document.getElementById('total').textContent;
+        showNotification(`✅ Compra realizada! Total: RD$${total}`);
+        
+        // Recargar productos para actualizar stock localmente
+        await loadProductsFromSupabase();
+        
+        // Vaciar carrito
+        carrito = [];
+        updateCartCount();
+        
+        // Redirigir a inicio
+        setTimeout(() => showPage('home'), 1500);
+    } catch (error) {
+        console.error('Error en checkout:', error);
+        showNotification('❌ Error procesando la compra');
+    }
 }
 
 // ENVIAR CONTACTO
