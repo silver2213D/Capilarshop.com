@@ -1,5 +1,8 @@
-// BASE DE DATOS DE PRODUCTOS LOGO EMPRESA
-const productos = [
+// BASE DE DATOS DE PRODUCTOS - Inicialmente vacía (se carga desde Supabase)
+let productos = [];
+
+// PRODUCTOS DE FALLBACK (solo si Supabase no funciona)
+const productosLocal = [
     { id: 1, nombre: 'Shampoo Reparador con Keratina', categoria: 'shampoo', seccion: 'general', precio: 1450, imagen: 'images/piel-sensible.jpg', descripcion: 'Shampoo nutritivo que refuerza la fibra capilar y mejora la elasticidad en cada lavado.', rating: 4.8, stock: 18 },
     { id: 2, nombre: 'Acondicionador Hidratante', categoria: 'acondicionador', seccion: 'general', precio: 1305, imagen: 'images/piel-sensible.jpg', descripcion: 'Acondicionador ligero que desenreda y aporta brillo sin apelmazar.', rating: 4.7, stock: 20 },
     { id: 3, nombre: 'Mascarilla Intensiva de Argán', categoria: 'tratamiento', seccion: 'general', precio: 1734, imagen: 'images/piel-sensible.jpg', descripcion: 'Tratamiento profundo para recuperar el cabello seco y dañado en minutos.', rating: 4.9, descuento: 15, stock: 12 },
@@ -80,25 +83,33 @@ function loadHomeProducts() {
 // CARGAR PRODUCTOS DESDE SUPABASE
 async function loadProductsFromSupabase() {
     try {
+        console.log('⏳ Cargando productos desde Supabase...');
+        
         const { data, error } = await supabaseClient
             .from('productos')
             .select('*');
         
         if (error) {
-            console.error('Error cargando productos de Supabase:', error);
+            console.error('❌ ERROR en Supabase:', error.message);
+            console.warn('⚠️ Usando productos locales como fallback');
+            productos.splice(0, productos.length, ...productosLocal);
+            showNotification('Usando datos locales - No se pudo conectar a Supabase');
             return false;
         }
         
         if (data && data.length > 0) {
             productos.splice(0, productos.length, ...data);
-            console.log('Productos cargados desde Supabase:', data.length);
+            console.log('✓ Productos cargados desde Supabase:', data.length);
             return true;
         } else {
-            console.warn('No hay productos en Supabase');
+            console.warn('⚠️ Supabase está vacío, usando productos locales');
+            productos.splice(0, productos.length, ...productosLocal);
             return false;
         }
     } catch (error) {
-        console.error('Error cargando productos:', error);
+        console.error('❌ EXCEPCIÓN al cargar productos:', error);
+        console.warn('⚠️ Usando productos locales como fallback');
+        productos.splice(0, productos.length, ...productosLocal);
         return false;
     }
 }
