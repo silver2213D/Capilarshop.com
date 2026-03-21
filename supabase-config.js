@@ -6,5 +6,26 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const { createClient } = supabase;
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Log de conexión
-console.log('Supabase configurado correctamente');
+// Log de conexión con detalles
+console.log('=== SUPABASE CONFIGURATION ===');
+console.log('URL:', SUPABASE_URL);
+console.log('Cliente inicializado:', supabaseClient ? 'SÍ ✓' : 'NO ✗');
+
+// Test de conexión
+setTimeout(async () => {
+    try {
+        const { data, error } = await supabaseClient
+            .from('productos')
+            .select('count(*)', { count: 'exact' });
+        
+        if (error) {
+            console.error('❌ ERROR Conectando a Supabase:', error);
+            console.error('Detalles:', error.message);
+        } else {
+            console.log('✓ Conexión a Supabase OK');
+            console.log('Tabla "productos" accesible');
+        }
+    } catch (err) {
+        console.error('❌ EXCEPCIÓN:', err);
+    }
+}, 1000);
