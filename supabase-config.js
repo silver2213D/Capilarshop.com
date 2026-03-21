@@ -16,7 +16,8 @@ setTimeout(async () => {
     try {
         const { data, error } = await supabaseClient
             .from('productos')
-            .select('count(*)', { count: 'exact' });
+            .select('*')
+            .limit(1);
         
         if (error) {
             console.error('❌ ERROR Conectando a Supabase:', error);
