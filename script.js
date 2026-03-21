@@ -84,13 +84,22 @@ async function loadProductsFromSupabase() {
             .from('productos')
             .select('*');
         
-        if (error) throw error;
+        if (error) {
+            console.error('Error cargando productos de Supabase:', error);
+            return false;
+        }
         
         if (data && data.length > 0) {
             productos.splice(0, productos.length, ...data);
+            console.log('Productos cargados desde Supabase:', data.length);
+            return true;
+        } else {
+            console.warn('No hay productos en Supabase');
+            return false;
         }
     } catch (error) {
         console.error('Error cargando productos:', error);
+        return false;
     }
 }
 
@@ -103,17 +112,32 @@ async function saveProductToSupabase(product) {
                 .from('productos')
                 .update(product)
                 .eq('id', product.id);
-            if (error) throw error;
+            
+            if (error) {
+                console.error('Error actualizando producto:', error);
+                throw error;
+            }
+            console.log('Producto actualizado en Supabase:', product.id);
         } else {
-            // Insertar nuevo
+            // Insertar nuevo - generar ID único
+            const newId = Math.max(...productos.map(p => p.id || 0), 0) + 1;
+            const newProduct = { ...product, id: newId };
+            
             const { data, error } = await supabaseClient
                 .from('productos')
-                .insert([product]);
-            if (error) throw error;
+                .insert([newProduct]);
+            
+            if (error) {
+                console.error('Error insertando producto:', error);
+                throw error;
+            }
+            console.log('Producto insertado en Supabase:', newId);
             return data?.[0];
         }
     } catch (error) {
-        console.error('Error guardando producto:', error);
+        console.error('Error guardando producto en Supabase:', error);
+        showNotification('Error al guardar en Supabase: ' + error.message);
+        return null;
     }
 }
 
@@ -124,9 +148,17 @@ async function deleteProductFromSupabase(productId) {
             .from('productos')
             .delete()
             .eq('id', productId);
-        if (error) throw error;
+        
+        if (error) {
+            console.error('Error eliminando producto:', error);
+            throw error;
+        }
+        console.log('Producto eliminado de Supabase:', productId);
+        return true;
     } catch (error) {
         console.error('Error eliminando producto:', error);
+        showNotification('Error al eliminar de Supabase: ' + error.message);
+        return false;
     }
 }
 
@@ -269,15 +301,22 @@ function loadAdminProducts() {
     }).join('');
 }
 
-function deleteProduct(productId) {
+async function deleteProduct(productId) {
     const index = productos.findIndex(p => p.id === productId);
     if (index === -1) return;
-    productos.splice(index, 1);
-    deleteProductFromSupabase(productId);
-    loadProducts();
-    loadHomeProducts();
-    loadAdminProducts();
-    showNotification('Producto eliminado.');
+    
+    // Eliminar de Supabase primero
+    const success = await deleteProductFromSupabase(productId);
+    
+    if (success) {
+        productos.splice(index, 1);
+        loadProducts();
+        loadHomeProducts();
+        loadAdminProducts();
+        showNotification('Producto eliminado correctamente.');
+    } else {
+        showNotification('Error al eliminar el producto.');
+    }
 }
 
 // AGREGAR PRODUCTO NUEVO
