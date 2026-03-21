@@ -542,7 +542,7 @@ function displayCart() {
         const finalPrice = item.descuento ? (item.precio * (1 - item.descuento / 100)) : item.precio;
         return `
             <div class="cart-item">
-                <div class="cart-item-image">${item.imagen}</div>
+                <div class="cart-item-image"><img src="${item.imagen}" alt="${item.nombre}"></div>
                 <div class="cart-item-details">
                     <h4>${item.nombre}</h4>
                     <p>RD$${finalPrice.toFixed(2)} c/u</p>
