@@ -106,5 +106,4 @@ Cliente inicializado: SÍ ✓
 - Ejecuta el SQL anterior para habilitar RLS
 
 **Los productos siguen siendo los hardcodeados**
-- Abre F12 y busca qué dice la consola
-- Comparte el mensaje de error
+- Abre F12 y busca qué dice la consola para saber el error
